@@ -16,13 +16,13 @@ var (
 func sh(name string, args ...string) (string, error) {
 	cmd := exec.Command(name, args...)
 
-	out, err := cmd.Output()
+	out, err := cmd.CombinedOutput()
 	return strings.Trim(string(out), " \n"), err
 }
 
 // ShResult used for channel in timeout
 type ShResult struct {
-	Output string // STDOUT
+	Output string // STDOUT+STDERR
 	Err    error  // go error, not STDERR
 }
 
