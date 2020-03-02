@@ -1,5 +1,5 @@
 PLUGIN_NAME=docker.chameleoncloud.org/wetopi/rbd
-PLUGIN_VERSION=2.0.1
+PLUGIN_VERSION=2.1.0
 
 all: clean rootfs create
 

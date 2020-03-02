@@ -179,6 +179,12 @@ curl -H "Content-Type: application/json" -XPOST -d '{}' --unix-socket /var/run/d
 
 ## Changelog
 
+### v2.1.0
+new: support for Ceph Nautilus release
+
+This also marks the beginning of the plugin being compiled with Golang v1.14
+
+
 ### v2.0.1
 fix: pass the cluster name to rbd invocations
 
