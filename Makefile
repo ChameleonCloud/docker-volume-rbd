@@ -28,6 +28,12 @@ create:
 	@echo "### create new plugin ${PLUGIN_NAME}:latest from ./plugin"
 	@docker plugin create ${PLUGIN_NAME}:latest ./plugin
 
+dev:
+	@echo "### docker build: dev image with docker-volume-rbd"
+	@docker build -q -t ${PLUGIN_NAME}:dev -f Dockerfile.dev .
+	@echo "### launching interactive shell"
+	@docker run --rm -it -v ${PWD}:/go/src/github.com/wetopi/docker-volume-rbd ${PLUGIN_NAME}:dev bash
+
 push:
 	@echo "### push plugin ${PLUGIN_NAME}:${PLUGIN_VERSION}"
 	@docker plugin push ${PLUGIN_NAME}:${PLUGIN_VERSION}
