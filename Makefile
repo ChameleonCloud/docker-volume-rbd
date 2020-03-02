@@ -6,6 +6,8 @@ all: clean rootfs create
 clean:
 	@echo "### rm ./plugin"
 	@rm -rf ./plugin
+	@echo "### rm ./vendor"
+	@rm -rf ./vendor
 
 rootfs:
 	@echo "### docker build: rootfs image with docker-volume-rbd"
@@ -29,8 +31,8 @@ create:
 	@docker plugin create ${PLUGIN_NAME}:latest ./plugin
 
 dev:
-	@echo "### docker build: dev image with docker-volume-rbd"
-	@docker build -q -t ${PLUGIN_NAME}:dev -f Dockerfile.dev .
+	@echo "### docker build: dev image with golang dependencies"
+	@docker build --target go-builder -q -t ${PLUGIN_NAME}:dev .
 	@echo "### launching interactive shell"
 	@docker run --rm -it -v ${PWD}:/go/src/github.com/wetopi/docker-volume-rbd ${PLUGIN_NAME}:dev bash
 
